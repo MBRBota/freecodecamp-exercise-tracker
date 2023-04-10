@@ -1,0 +1,84 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FFECCC;
+  margin: 0;
+  height: 100vh;
+}
+
+.main__container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.tracker__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 90%;
+  max-width: 950px;
+}
+
+.tracker__header{
+  position: absolute;
+  top: -25%;
+}
+
+.forms__container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.forms__container form{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  width: 30%;
+  min-width: 250px;
+}
+
+.forms__container form input{
+  margin: 5px 0;
+  padding: 5px;
+}
+
+.form__submit{
+  position: relative;
+  background-color: #CCFFC5;
+  border: 1px solid grey;
+  box-shadow: 2px 2px grey;
+}
+
+.form__submit:hover{
+  background-color: #77FF64;
+  cursor: pointer;
+}
+
+.form__submit:active{
+  box-shadow: none;
+  background-color: #77FF64;
+  top: 2px;
+  left: 2px;
+}
+
+#user-form{
+  background-color: #B5C8F0;
+}
+
+#exercise-form{
+  background-color: #FF6464;
+}
+
+#log-form{
+  background-color: #DEDEDE;
+}

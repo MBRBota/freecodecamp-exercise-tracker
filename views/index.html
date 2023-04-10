@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon.ico"  type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <main class="main__container">
+      <section class="tracker__container">
+        <h1 class="tracker__header">Exercise Tracker</h1>
+        <div class="forms__container">
+          <form id="user-form" action="/api/users" method="post">
+            <h3>Create a new user</h3>
+            <input id="username" type="text" name="username" placeholder="username*" required/>
+            <input class="form__submit" type="submit" value="Submit"/>
+          </form>
+          
+          <form id="exercise-form" method="post">
+            <h3>Add exercise</h3>
+            <input id="exercise-user-id" type="text" name="user-id" placeholder="_id*" required/>
+            <input id="description" type="text" name="description" placeholder="description*" required/>
+            <input id="duration" type="text" name="duration" placeholder="duration (min)*" required/>
+            <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)"/>
+            <input class="form__submit" type="submit" value="Submit"/>
+          </form>
+          
+          <form id="log-form" method="get">
+            <h3>Access logs</h3>
+            <input id="log-user-id" type="text" name="log-id" placeholder="_id*" required/>
+            <input id="from" type="text" name="from" placeholder="from"/>
+            <input id="to" type="text" name="to" placeholder="to"/>
+            <input id="limit" type="text" name="limit" placeholder="limit"/>
+            <input class="form__submit" type="submit" value="Submit"/>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="form.js"></script>
+  </body>
+</html>
