@@ -52,23 +52,34 @@ body{
   padding: 5px;
 }
 
-.form__submit{
+.form__submit, .tracker__users-button{
   position: relative;
   background-color: #CCFFC5;
   border: 1px solid grey;
   box-shadow: 2px 2px grey;
 }
 
-.form__submit:hover{
+.form__submit:hover, .tracker__users-button:hover{
   background-color: #77FF64;
   cursor: pointer;
 }
 
-.form__submit:active{
+.form__submit:active, .tracker__users-button:active{
   box-shadow: none;
   background-color: #77FF64;
   top: 2px;
   left: 2px;
+}
+
+.tracker__users{
+  position: absolute;
+  top: 105%;
+  width: 100%;
+}
+
+.tracker__users-button{
+  width: 100%;
+  padding: 5px;
 }
 
 #user-form{
