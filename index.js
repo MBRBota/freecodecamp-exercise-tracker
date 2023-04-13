@@ -116,3 +116,16 @@ app.get('/api/users/:_id/logs', (req, res) => {
       res.status(400).send('Something went wrong.');
     })
 })
+
+// list all users route
+app.get('/api/users', (req, res) => {
+  User.find()
+    .then((usersArray) => {
+      const formattedUsers = usersArray.map((user) => ({ _id: user._id, username: user.username }))
+      res.send(formattedUsers);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send('Something went wrong.')
+    })
+})
