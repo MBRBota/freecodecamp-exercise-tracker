@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
   res.sendFile(`${process.cwd()}/views/index.html`)
 });
 
+// new user route
 app.post('/api/users', (req, res) => {
   const user = new User({ username: req.body.username })
 
@@ -43,6 +44,7 @@ app.post('/api/users', (req, res) => {
     });
 })
 
+// new exercise route
 app.post('/api/users/:_id/exercises', (req, res) => {
   User.findById({ _id: req.params._id })
     .then((foundUser) => {
@@ -75,5 +77,42 @@ app.post('/api/users/:_id/exercises', (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(400).send('Something went wrong.')
+    })
+})
+
+// log access route
+app.get('/api/users/:_id/logs', (req, res) => {
+  User.findById({ _id: req.params._id })
+    .then((foundUser) => {
+      if(!foundUser){
+        return res.send('User not found.')
+      }
+
+      // filter logs based on 'from' and 'to' queries, otherwise default to UNIX start time and max time supported by Date objects
+      const dateFrom = new Date(req.query.from || 0).getTime();
+      const dateTo = new Date(req.query.to || 8640000000000000).getTime();
+      const filteredLogs = foundUser.log.filter((log) => log.date.getTime() >= dateFrom && log.date.getTime() <= dateTo)
+                                        .map((log) => ({ description: log.description, duration: log.duration, date: log.date.toDateString() }));
+
+      const logLimit = parseInt(req.query.limit);
+      const limitedLogs = [];
+      if(logLimit){
+        for(let i = 0; i < logLimit; i++){
+          if(filteredLogs[i]){
+            limitedLogs.push(filteredLogs[i]);
+          }
+        }
+      }
+
+      res.json({
+        _id: foundUser._id,
+        username: foundUser.username,
+        count: limitedLogs.length || filteredLogs.length,
+        log: limitedLogs.length ? limitedLogs : filteredLogs
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send('Something went wrong.');
     })
 })
